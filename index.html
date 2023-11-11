@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вгадай число</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Вгадай число</h1>
+    
+    <p>Введіть число від 1 до 100:</p>
+    <input type="number" id="userGuess">
+    <button onclick="checkGuess()">Перевірити</button>
+    
+    <p id="message"></p>
+    <p id="attempts"></p>
+
+    <script>
+        // Загадане число
+        var secretNumber = generateRandomNumber();
+
+        // Кількість спроб
+        var attempts = 0;
+
+        function generateRandomNumber() {
+            return Math.floor(Math.random() * 100) + 1;
+        }
+
+        function checkGuess() {
+            // Отримуємо введене число від користувача
+            var userGuess = document.getElementById("userGuess").value;
+
+            // Збільшуємо кількість спроб
+            attempts++;
+
+            // Перевіряємо, чи відповідає число
+            if (userGuess == secretNumber) {
+                document.getElementById("message").innerHTML = "Ви вгадали!";
+                document.getElementById("message").style.color = "green";
+                document.getElementById("attempts").innerHTML = "Кількість спроб: " + attempts;
+            } else if (userGuess < secretNumber) {
+                document.getElementById("message").innerHTML = "Загадане число більше";
+                document.getElementById("message").style.color = "red";
+            } else {
+                document.getElementById("message").innerHTML = "Загадане число менше";
+                document.getElementById("message").style.color = "red";
+            }
+        }
+    </script>
+
+</body>
+</html>
